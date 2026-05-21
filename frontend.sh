@@ -8,19 +8,19 @@ N="\e[0m"
 
 
 LOGS_FOLDER="/var/log/frontend_logs"
-LOG_FILE=$(echo $0 | cut -d "." -f1 )
+LOG_FILE=$(echo $0 | cut -d "." -f1)
 TIMESTAMP=$(date +%Y-%m-%d-%H-%M-%S)
 USER=$(logname)
 LOG_FILE_NAME="$LOGS_FOLDER/$LOG_FILE-$TIMESTAMP.log"
 
 FUNCTION(){
     if [ $1 -ne 0 ]
-         then
-           echo -e "$2....$R Failure"$N
-           exit 1
-        else
-            echo -e "$2.....$G Success"$N
-       fi   
+      then
+        echo -e "$2....$R Failure"$N
+        exit 2
+      else
+        echo -e "$2.....$G Success"$N
+    fi   
 }
 
 if [ $USERID -ne 0 ]
@@ -32,7 +32,6 @@ fi
 mkdir -p $LOGS_FOLDER
 
 echo "$TIMESTAMP" &>>$LOG_FILE_NAME
-echo "$USER"  &>>$LOG_FILE_NAME
 
 dnf install nginx -y   &>>$LOG_FILE_NAME
 FUNCTION $? "Installation nginx"
@@ -59,7 +58,7 @@ cp /home/ec2-user/Expense-project-shell/expense.conf /etc/nginx/default.d/expens
 FUNCTION $? "copied expense config"
 
 systemctl restart nginx   &>>$LOG_FILE_NAME
-FUNCTION "restarted nginx"
+FUNCTION $? "restarted nginx"
 
 
 
