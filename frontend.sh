@@ -55,7 +55,7 @@ FUNCTION $? "moving download code"
 unzip /tmp/frontend.zip   &>>$LOG_FILE_NAME
 FUNCTION $? "unzip code"
 
-cp /home/ec2-user/shell-scrict/expense_project_shell/expense.conf /etc/nginx/default.d/expense.conf   
+cp /home/ec2-user/Expense-project-shell/expense.conf /etc/nginx/default.d/expense.conf   
 FUNCTION $? "copied expense config"
 
 systemctl restart nginx   &>>$LOG_FILE_NAME
