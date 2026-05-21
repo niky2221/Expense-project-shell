@@ -75,7 +75,7 @@ FUNCTION $? "created Backend service"
 dnf install mysql -y       &>>$LOG_FILE_NAME
 FUNCTION $? "Installing mysql"
 
-mysql -h 172.31.40.67 -u root -pExpenseApp@1 < /app/schema/backend.sql &>>$LOG_FILE_NAME
+mysql -h mysql.expense94.online -u root -pExpenseApp@1 < /app/schema/backend.sql &>>$LOG_FILE_NAME
 FUNCTION $? "Setting of mysql schema"
 
 systemctl daemon-reload    &>>$LOG_FILE_NAME
