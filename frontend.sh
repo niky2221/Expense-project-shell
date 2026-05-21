@@ -49,7 +49,7 @@ FUNCTION $? "Removing exesting code"
 curl -o /tmp/frontend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip &>>$LOG_FILE_NAME
 FUNCTION $? "download nginx code"
 
-cd /usr/share/nginx/html
+cd /usr/share/nginx/html           &>>$LOG_FILE_NAME
 FUNCTION $? "moving download code"
 
 unzip /tmp/frontend.zip   &>>$LOG_FILE_NAME
